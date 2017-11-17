@@ -13,6 +13,8 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "./node_modules/.bin/eslint ."
+    "coverage": "jest --coverage",
+    "lint": "./node_modules/.bin/eslint .",
+    "validate": "jest --coverage && ./node_modules/.bin/eslint ."
   }
 }
