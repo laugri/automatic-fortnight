@@ -18,10 +18,13 @@ function computeCartPrice(articles, cart) {
 }
 
 function buildOutput(data) {
-  const computedCarts = data.carts.reduce((carts, cart) => {
+  const computedCarts = data.carts.reduce((cartAccumulator, cart) => {
     const cartId = cart.id;
-    carts.push({ id: cartId, total: computeCartPrice(data.articles, cart) });
-    return carts;
+    cartAccumulator.push({
+      id: cartId,
+      total: computeCartPrice(data.articles, cart),
+    });
+    return cartAccumulator;
   }, []);
   return { carts: computedCarts };
 }
