@@ -1,20 +1,29 @@
-const output = require('./output.json');
-const data = require('./data.json');
-
-function getArticle(articleId) {
-  return data.articles.find(article => article.id === articleId);
+function getArticle(articles, articleId) {
+  return articles.find(article => article.id === articleId);
 }
 
-function computeItemPrice(item) {
-  return getArticle(item.article_id) * item.quantity;
+function computeItemPrice(articles, item) {
+  const article = getArticle(articles, item.article_id);
+  if (!article) {
+    throw 'Article could not be found.';
+  }
+  return article.price * item.quantity;
 }
 
-function computeCartPrice(cart) {
-  return cart.items.reduce((sum, item) => sum + computeItemPrice(item));
+function computeCartPrice(articles, cart) {
+  return cart.items.reduce(
+    (sum, item) => sum + computeItemPrice(articles, item),
+    0
+  );
 }
 
-function buildOutput() {
-  return output;
+function buildOutput(data) {
+  const computedCarts = data.carts.reduce((carts, cart) => {
+    const cartId = cart.id;
+    carts.push({ id: cartId, total: computeCartPrice(data.articles, cart) });
+    return carts;
+  }, []);
+  return { carts: computedCarts };
 }
 
 module.exports = {
