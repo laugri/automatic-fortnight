@@ -8,6 +8,7 @@
   "devDependencies": {
     "eslint": "^4.11.0",
     "eslint-config-prettier": "^2.7.0",
+    "flow-bin": "^0.59.0",
     "jest": "^21.2.1",
     "prettier": "^1.8.2"
   },
@@ -15,6 +16,6 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "./node_modules/.bin/eslint .",
-    "validate": "jest --coverage && ./node_modules/.bin/eslint ."
+    "validate": "jest --coverage && flow && ./node_modules/.bin/eslint ."
   }
 }
