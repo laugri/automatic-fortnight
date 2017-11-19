@@ -1,3 +1,4 @@
+// @flow
 const level1 = require('./level1.js');
 const data = require('./data.json');
 const output = require('./output.json');
