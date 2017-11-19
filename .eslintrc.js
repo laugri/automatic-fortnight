@@ -6,9 +6,12 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:flowtype/recommended',
     'prettier',
     'prettier/flowtype',
     'prettier/react',
     'prettier/standard',
   ],
+  plugins: ['flowtype'],
+  parser: 'babel-eslint',
 };
